@@ -9,8 +9,9 @@ use OAuth2\Server as OAuth2Server;
 use OAuth2\Storage\Pdo;
 use OAuth2\Storage\Memory;
 use OAuth2\OpenID\GrantType\AuthorizationCode;
-use OAuth2\GrantType\UserCredentials;
 use OAuth2\GrantType\RefreshToken;
+
+include 'Models/UserCredentials.php';
 
 class Server implements ControllerProviderInterface
 {
@@ -30,7 +31,7 @@ class Server implements ControllerProviderInterface
         // create array of supported grant types
         $grantTypes = array(
             'authorization_code' => new AuthorizationCode($storage),
-            'user_credentials'   => new UserCredentials($storage),
+            'user_credentials'   => new \Procvic\UserCredentials(),
             'refresh_token'      => new RefreshToken($storage, array(
                 'always_issue_new_refresh_token' => true,
             )),
@@ -71,6 +72,7 @@ class Server implements ControllerProviderInterface
         Controllers\Authorize::addRoutes($routing);
         Controllers\Token::addRoutes($routing);
         Controllers\Resource::addRoutes($routing);
+        Controllers\CheckAuthorize::addRoutes($routing);
 
         return $routing;
     }
