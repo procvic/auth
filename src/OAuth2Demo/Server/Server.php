@@ -71,7 +71,6 @@ class Server implements ControllerProviderInterface
         /* Set corresponding endpoints on the controller classes */
         Controllers\Authorize::addRoutes($routing);
         Controllers\Token::addRoutes($routing);
-        Controllers\Resource::addRoutes($routing);
         Controllers\CheckAuthorize::addRoutes($routing);
 
         return $routing;
