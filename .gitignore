@@ -1,5 +1,6 @@
 .DS_Store
 /vendor/
+/temp/
 composer.lock
 composer.phar
 autoload.php
