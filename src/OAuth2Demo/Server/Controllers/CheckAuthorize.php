@@ -16,15 +16,9 @@ class CheckAuthorize
     {
         $server = $app['oauth_server'];
         $response = $app['oauth_response'];
-        if (!$server->verifyResourceRequest($app['request'], $response)) {
-            $api_response = array(
-                'is-authorize' => 'false'
-            );
-        } else {
-            $api_response = array(
-                'is-authorize' => 'true'
-            );
-        }
+        $api_response = array(
+            'is-authorize' => $server->verifyResourceRequest($app['request'], $response),
+        );
         return new Response(json_encode($api_response));
     }
 }
