@@ -1,8 +1,9 @@
 .DS_Store
-/vendor/
-/temp/
 composer.lock
 composer.phar
 autoload.php
-data/oauth.sqlite
-data/parameters.json
+
+/src/data/oauth.sqlite
+/src/data/parameters.json
+/src/vendor/
+/temp/

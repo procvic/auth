@@ -11,5 +11,8 @@
             "OAuth2Demo": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "config": {
+        "vendor-dir": "src/vendor"
+    }
 }
