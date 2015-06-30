@@ -9,7 +9,7 @@ class CheckAuthorize
 {
     public static function addRoutes($routing)
     {
-        $routing->get('/check-authorize', array(new self(), 'checkAuthorize'))->bind('access');
+        $routing->get('/authorize', array(new self(), 'checkAuthorize'))->bind('access');
     }
 
     public function checkAuthorize(Application $app)

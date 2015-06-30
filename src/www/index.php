@@ -16,7 +16,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app['debug'] = true;
 
 /** set up routes / controllers */
-$app->mount('/lockdin', new OAuth2Demo\Server\Server());
+$app->mount('/', new OAuth2Demo\Server\Server());
 
 // create an http foundation request implementing OAuth2\RequestInterface
 $request = OAuth2\HttpFoundationBridge\Request::createFromGlobals();

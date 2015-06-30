@@ -9,7 +9,7 @@ class Token
     // Connects the routes in Silex
     public static function addRoutes($routing)
     {
-        $routing->post('/token', array(new self(), 'token'))->bind('grant');
+        $routing->post('/authenticate', array(new self(), 'token'))->bind('grant');
     }
 
     /**
