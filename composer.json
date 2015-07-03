@@ -6,11 +6,6 @@
         "bshaffer/oauth2-server-httpfoundation-bridge": "v1.1",
         "guzzle/guzzle": "v3.7.4"
     },
-    "autoload" : {
-        "psr-0": {
-            "OAuth2Demo": "src/"
-        }
-    },
     "config": {
         "vendor-dir": "src/vendor"
     }
