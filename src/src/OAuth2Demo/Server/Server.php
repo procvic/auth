@@ -11,8 +11,6 @@ use OAuth2\Storage\Memory;
 use OAuth2\OpenID\GrantType\AuthorizationCode;
 use OAuth2\GrantType\RefreshToken;
 
-include 'Models/UserCredentials.php';
-
 class Server implements ControllerProviderInterface
 {
     /**
