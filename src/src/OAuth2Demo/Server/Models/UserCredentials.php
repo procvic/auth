@@ -20,13 +20,13 @@ class UserCredentials implements GrantTypeInterface
 	public function validateRequest(RequestInterface $request, ResponseInterface $response)
 	{
 		if (!$request->request("password") || !$request->request("username")) {
-			$response->setError(400, 'invalid_request', 'Missing parameters: "username" and "password" required');
+			$response->setError(200, 'invalid_request', 'Missing parameters: "username" and "password" required');
 
 			return null;
 		}
 
 		if ($request->request("username") != 'demouser' || $request->request("password") != 'testpass') {
-			$response->setError(401, 'invalid_grant', 'Invalid username and password combination');
+			$response->setError(200, 'invalid_grant', 'Invalid username and password combination');
 
 			return null;
 		}
@@ -38,7 +38,7 @@ class UserCredentials implements GrantTypeInterface
 		];
 
 		if (empty($userInfo)) {
-			$response->setError(400, 'invalid_grant', 'Unable to retrieve user information');
+			$response->setError(200, 'invalid_grant', 'Unable to retrieve user information');
 
 			return null;
 		}
