@@ -7,6 +7,8 @@ use OAuth2\ResponseType\AccessTokenInterface;
 use OAuth2\RequestInterface;
 use OAuth2\ResponseInterface;
 use OAuth2\GrantType\GrantTypeInterface;
+use PDO;
+use Nette\Security\Passwords;
 
 class UserCredentials implements GrantTypeInterface
 {
@@ -19,32 +21,26 @@ class UserCredentials implements GrantTypeInterface
 
 	public function validateRequest(RequestInterface $request, ResponseInterface $response)
 	{
+		try {
+			$pdo = new PDO(DB_DNS, DB_USER, DB_PASSWORD);
+		} catch (\PDOException $e) {
+			echo 'Connection failed: ' . $e->getMessage();
+		}
+
 		if (!$request->request("password") || !$request->request("username")) {
 			$response->setError(200, 'invalid_request', 'Missing parameters: "username" and "password" required');
 
 			return null;
 		}
 
-		if ($request->request("username") != 'demouser' || $request->request("password") != 'testpass') {
+		$query = 'SELECT id, name, surname, password FROM users WHERE email = ?';
+		$prepare = $pdo->prepare($query);
+		$prepare->execute([$request->request("username")]);
+		$userInfo = $prepare->fetch(\PDO::FETCH_ASSOC);
+		if (empty($userInfo) || !Passwords::verify($request->request("password"), $userInfo['password'])) {
 			$response->setError(200, 'invalid_grant', 'Invalid username and password combination');
 
 			return null;
-		}
-
-		$userInfo = [
-			'user_id' => 1,
-			'name' => 'John',
-			'surname' => 'Doe',
-		];
-
-		if (empty($userInfo)) {
-			$response->setError(200, 'invalid_grant', 'Unable to retrieve user information');
-
-			return null;
-		}
-
-		if (!isset($userInfo['user_id'])) {
-			throw new \LogicException("you must set the user_id on the array returned by getUserDetails");
 		}
 
 		$this->userInfo = $userInfo;

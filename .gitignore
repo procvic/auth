@@ -3,6 +3,7 @@ composer.lock
 composer.phar
 autoload.php
 
+/src/data/configuration.php
 /src/data/oauth.sqlite
 /src/data/parameters.json
 /src/vendor/

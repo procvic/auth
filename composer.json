@@ -4,6 +4,7 @@
         "symfony/twig-bridge": "2.1.13",
         "bshaffer/oauth2-server-php": "v1.6",
         "bshaffer/oauth2-server-httpfoundation-bridge": "v1.1",
+        "nette/security": "v2.3",
         "guzzle/guzzle": "v3.7.4"
     },
     "config": {
