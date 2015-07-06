@@ -28,7 +28,7 @@ class UserCredentials implements GrantTypeInterface
 		}
 
 		if (!$request->request("password") || !$request->request("username")) {
-			$response->setError(200, 'invalid_request', 'Missing parameters: "username" and "password" required');
+			$response->setError(400, 'invalid_request', 'Missing parameters: "username" and "password" required');
 
 			return null;
 		}
@@ -38,7 +38,7 @@ class UserCredentials implements GrantTypeInterface
 		$prepare->execute([$request->request("username")]);
 		$userInfo = $prepare->fetch(\PDO::FETCH_ASSOC);
 		if (empty($userInfo) || !Passwords::verify($request->request("password"), $userInfo['password'])) {
-			$response->setError(200, 'invalid_grant', 'Invalid username and password combination');
+			$response->setError(401, 'invalid_grant', 'Invalid username and password combination');
 
 			return null;
 		}
