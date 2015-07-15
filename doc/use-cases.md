@@ -1,7 +1,7 @@
 # Use cases
 
 ## 1. Get access token
-For example call in terminal `curl -v "http://auth.procvic.cz/authenticate" -d "grant_type=password&client_id=demoapp&client_secret=demopass&username=demouser&password=testpass"`.
+For example call in terminal `curl -v "http://auth.procvic.cz/authenticate" -d "username=demouser&password=testpass"`.
 
 Upper command return JSON with access_token. For example it can return `{"access_token":"14a5d0350728e976f53558725b0ea6ad4e8536b7","expires_in":3600,"token_type":"Bearer","scope":null,"refresh_token":"0f447f967b1e955d540730d7ed16979503ed8ccc"}`.
 

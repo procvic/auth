@@ -6,6 +6,10 @@ require_once __DIR__.'/../src/OAuth2Demo/Server/Models/UserCredentials.php';
 require_once __DIR__.'/../src/OAuth2Demo/Server/Controllers/Token.php';
 require_once __DIR__.'/../src/OAuth2Demo/Server/Controllers/CheckAuthorize.php';
 
+$_POST['grant_type'] = 'password';
+$_POST['client_id'] = 'demoapp';
+$_POST['client_secret'] = 'demopass';
+
 /** configuration for remote database */
 if (!file_exists(__DIR__ . '/../data/configuration.php')) {
 	die('You have to create configuration file in \'data/configuration.php\'');
